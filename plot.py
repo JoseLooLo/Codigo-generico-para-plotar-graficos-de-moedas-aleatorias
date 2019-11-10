@@ -5,16 +5,18 @@ import requests
 class Plot:
 
     base_url = "https://www.alphavantage.co/query?"
-    api_key = "UmaKeyGenerica"
+    #api_key = "UmaKeyGenerica"
 
-    def __init__(self, symbol, market, days = 0):
+    def __init__(self, symbol, market, key, days = 0):
         self.symbol = symbol
         self.market = market
         self.days = days
+        self.api_key = key
 
     def getInfoRequestCandlestick(self):
         function = "DIGITAL_CURRENCY_DAILY"
         url = f"{self.base_url}function={function}&symbol={self.symbol}&market={self.market}&apikey={self.api_key}"
+        print(url)
         response = requests.get(url)
         response = response.json()
 
@@ -56,6 +58,7 @@ class Plot:
         time_period = "30"
         series_type = "open"
         url = f"{self.base_url}function={function}&symbol={self.symbol}{self.market}&interval={interval}&time_period={time_period}&series_type={series_type}&apikey={self.api_key}"
+        print(url)
         response = requests.get(url)
         response = response.json()
 
